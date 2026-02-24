@@ -133,9 +133,9 @@
                 ];
 
                 if (winConditions.indexOf("XXX") !== -1) {
-                    document.write("<div class='winCondition'>X wins! Play Again?</div>");
+                    document.querySelector('.winCondition').textContent="X Wins! Play Again?";
                 } else if (winConditions.indexOf("OOO") !== -1) {
-                    document.write("<div class='winCondition'>O wins! Play Again?</div>");
+                    document.querySelector('.winCondition').textContent="O Wins! Play Again?";
                 } 
 
                 let dashCount = 0;
@@ -146,7 +146,7 @@
                 }
 
                 if (dashCount == 0) {
-                     document.write("<div class='winCondition'>Stalemate! Play Again?</div>");
+                    document.querySelector('.winCondition').textContent="Stalemate! Play Again?";
                 }
             }
 
