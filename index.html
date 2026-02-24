@@ -17,7 +17,7 @@
         }
 
         h1:hover {
-            background-color: white;
+            background-color: lightblue;
         }
 
         .TTTboard {
@@ -64,7 +64,7 @@
             justify-content: center;
             align-items: center;
             display: flex;
-            width: 200px;
+            width: 225px;
             margin: 0 auto;
             margin-top: 20px;
             font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
@@ -96,6 +96,7 @@
     <script>
         /* generate a random number that will round to 0 or 1, determining player turn */
         var randomNum = Math.round(Math.random());
+        var gameOver = false;
 
         if (randomNum == 0) {
             document.write("<div class='playerTurn'>Player O Turn</div>");
@@ -115,6 +116,7 @@
 
             document.write("<div class='winCondition'>Winner: TBD</div>");
 
+            /* initialize arrays */
             const moves = ["-", "-", "-", "-", "-", "-", "-", "-", "-"];
 
             function checkForWin() {
@@ -129,10 +131,13 @@
                     moves[2] + moves[4] + moves[6]
                 ];
 
+                /* check for wins and stalemate */
                 if (winConditions.indexOf("XXX") !== -1) {
                     document.querySelector('.winCondition').textContent="X Wins! Start a new game?";
+                    gameOver = true;
                 } else if (winConditions.indexOf("OOO") !== -1) {
                     document.querySelector('.winCondition').textContent="O Wins! Start a new game?";
+                    gameOver = true;
                 } 
 
                 let dashCount = 0;
@@ -147,12 +152,12 @@
                 }
             }
 
-            /* pop up alert and turn swap */
+            /* turn swap */
             const gridSquares = document.querySelectorAll('.square');
             gridSquares.forEach(gridSquare => {
                 gridSquare.addEventListener('click', function() {
-                    /* make sure square is empty first */
-                    if (this.textContent == '') {
+                    /* make sure square is empty first and game is ongoing */
+                    if (this.textContent == '' && !gameOver) {
                         if (randomNum == 0) {
                             moves[this.id[2]] = "O";
                             this.textContent = "O";
@@ -166,6 +171,7 @@
                         }
                     }
 
+                    /* check after each move */
                     checkForWin();
                 });
             });
