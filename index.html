@@ -118,7 +118,7 @@
                 document.write("<div class='square' id='" + id + "'></div>");
             }
 
-            const moves = [0, 0, 0, 0, 0, 0, 0, 0];
+            const moves = ["-", "-", "-", "-", "-", "-", "-", "-"];
 
             function checkForWin() {
                 const winConditions = [
@@ -157,10 +157,12 @@
                     /* make sure square is empty first */
                     if (this.textContent == '') {
                         if (randomNum == 0) {
+                            moves[this.id[2] = "O"];
                             this.textContent = "O";
                             randomNum = 1;
                             document.querySelector('.playerTurn').textContent="Player X Turn";
                         } else {
+                            moves[this.id[2] = "X"];
                             this.textContent = "X";
                             randomNum = 0;
                             document.querySelector('.playerTurn').textContent="Player O Turn";
