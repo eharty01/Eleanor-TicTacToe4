@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            background-color: lightcyan;
+        }
+
+        h1 {
+            color: grey;
+            justify-content: center;
+            display: flex;
+            text-shadow: 3px 3px lavender;
+            border: 2px dotted lavender;
+            border-radius: 15px;
+            font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
+
+        h1:hover {
+            background-color: white;
+        }
+
+        .TTTboard {
+            justify-content: center;
+            display: flex;
+            flex-wrap: wrap;
+            width: 330px;
+            margin: 0 auto;
+        }
+
+        .playerTurn {
+            color: grey;
+            border: 2px solid grey;
+            justify-content: center;
+            align-items: center;
+            display: flex;
+            width: 110px;
+            margin: 0 auto;
+            margin-bottom: 20px;
+            font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
+
+        .square {
+            background-color: white;
+            width: 100px;
+            height: 100px;
+            margin: 5px;
+            justify-content: center;
+            align-items: center;
+            display: flex;
+            font-size: 90px;
+            font-family: 'Courier New', Courier, monospace;
+            color: gray;
+        }
+
+        .square:hover {
+            background-color: lightslategray;
+            color: white;
+        }
+
+        .winCondition {
+            color: grey;
+            border: 2px solid grey;
+            justify-content: center;
+            align-items: center;
+            display: flex;
+            width: 150px;
+            margin: 0 auto;
+            margin-top: 20px;
+            font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
+
+        .winCondition:hover {
+            background-color: lightslategray;
+            color: white;
+        }
+
+        button {
+            justify-content: center;
+            align-items: center;
+            display: flex;
+            margin: 0 auto;
+            margin-top: 10px;
+            background-color: white;
+            border: 2px solid white;
+            border-radius: 15px;
+            color: lightslategray;
+            min-height: 35px;
+            min-width: 35px;
+        }
+
+        button:hover {
+            background-color: lightslategray;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>Tic Tac Toe</h1>
+
+    <script>
+        /* generate a random number that will round to 0 or 1, determining player turn */
+        var randomNum = Math.round(Math.random());
+
+        if (randomNum == 0) {
+            document.write("<div class='playerTurn'>Player O Turn</div>");
+        } else {
+            document.write("<div class='playerTurn'>Player X Turn</div>");
+        }
+    </script>
+
+    <div class="TTTboard">
+        <script>
+            const NUM_SQUARES = 9;
+            for (i=0; i<NUM_SQUARES; i++)
+            {
+                id = "sq"+i;
+                document.write("<div class='square' id='" + id + "'></div>");
+            }
+
+            const moves = [];
+
+            /* pop up alert and turn swap */
+            const gridSquares = document.querySelectorAll('.square');
+            gridSquares.forEach(gridSquare => {
+                gridSquare.addEventListener('click', function() {
+                    /* make sure square is empty first */
+                    if (this.textContent == '') {
+                        if (randomNum == 0) {
+                            this.textContent = "O";
+                            randomNum = 1;
+                            document.querySelector('.playerTurn').textContent="Player X Turn";
+                        } else {
+                            this.textContent = "X";
+                            randomNum = 0;
+                            document.querySelector('.playerTurn').textContent="Player O Turn";
+                        }
+                    }
+                });
+
+                if (this.textContent == '') {
+                    moves[this.id[2]] == "-";
+                } else {
+                    moves[this.id[2]] == this.textContent;
+                }
+            });
+
+            const winConditions = [moves[0] + moves[1] + moves[2], moves[3] + moves[4] + moves[5], moves[6] + moves[7] + moves[8], moves[0] + moves[3] + moves[6], moves[1] + moves[1] + moves[4] + moves[7], moves[2] + moves[5] + moves[8], moves[0] + moves[4] + moves[8], moves[2] + moves[4] + moves[6]];
+            if (winConditons.indexOf("XXX") == -1) {
+                document.write("<div class='winCondition'>X wins! Play Again?</div>");
+            } else if (winConditons.indexOf("OOO") == -1) {
+                document.write("<div class='winCondition'>O wins! Play Again?</div>");
+            } 
+
+            let dashCount = 0;
+            for (let i = 0; i < 9; i++) {
+                if (moves[i] == "-") {
+                    dashCount = dashCount + 1;
+                }
+            }
+
+            if (dashCount == 0) {
+                 document.write("<div class='winCondition'>Stalemate! Play Again?</div>");
+            }
+        </script>
+    </div>
+
+    <!-- clear the board with reload -->
+    <button type="button" onclick="window.location.reload();" class = "start-button">
+        Start Game!
+    </button>
+
+</body>
+
+</html>
