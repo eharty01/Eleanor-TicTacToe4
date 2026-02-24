@@ -118,7 +118,7 @@
                 document.write("<div class='square' id='" + id + "'></div>");
             }
 
-            const moves = ["-", "-", "-", "-", "-", "-", "-", "-"];
+            const moves = ["-", "-", "-", "-", "-", "-", "-", "-", "-"];
 
             function checkForWin() {
                 const winConditions = [
@@ -132,9 +132,9 @@
                     moves[2] + moves[4] + moves[6]
                 ];
 
-                if (winConditons.indexOf("XXX") !== -1) {
+                if (winConditions.indexOf("XXX") !== -1) {
                     document.write("<div class='winCondition'>X wins! Play Again?</div>");
-                } else if (winConditons.indexOf("OOO") !== -1) {
+                } else if (winConditions.indexOf("OOO") !== -1) {
                     document.write("<div class='winCondition'>O wins! Play Again?</div>");
                 } 
 
@@ -168,9 +168,9 @@
                             document.querySelector('.playerTurn').textContent="Player O Turn";
                         }
                     }
-                });
 
-                checkForWin();
+                    checkForWin();
+                });
             });
         </script>
     </div>
@@ -179,6 +179,10 @@
     <button type="button" onclick="window.location.reload();" class = "start-button">
         Start Game!
     </button>
+
+</body>
+
+</html>
 
 </body>
 
