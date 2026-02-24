@@ -118,7 +118,37 @@
                 document.write("<div class='square' id='" + id + "'></div>");
             }
 
-            const moves = [];
+            const moves = [0, 0, 0, 0, 0, 0, 0, 0];
+
+            function checkForWin() {
+                const winConditions = [
+                    moves[0] + moves[1] + moves[2], 
+                    moves[3] + moves[4] + moves[5], 
+                    moves[6] + moves[7] + moves[8], 
+                    moves[0] + moves[3] + moves[6], 
+                    moves[1] + moves[4] + moves[7], 
+                    moves[2] + moves[5] + moves[8], 
+                    moves[0] + moves[4] + moves[8], 
+                    moves[2] + moves[4] + moves[6]
+                ];
+
+                if (winConditons.indexOf("XXX") !== -1) {
+                    document.write("<div class='winCondition'>X wins! Play Again?</div>");
+                } else if (winConditons.indexOf("OOO") !== -1) {
+                    document.write("<div class='winCondition'>O wins! Play Again?</div>");
+                } 
+
+                let dashCount = 0;
+                for (let i = 0; i < 9; i++) {
+                    if (moves[i] == "-") {
+                        dashCount = dashCount + 1;
+                    }
+                }
+
+                if (dashCount == 0) {
+                     document.write("<div class='winCondition'>Stalemate! Play Again?</div>");
+                }
+            }
 
             /* pop up alert and turn swap */
             const gridSquares = document.querySelectorAll('.square');
@@ -143,25 +173,9 @@
                 } else {
                     moves[this.id[2]] == this.textContent;
                 }
+
+                checkForWin();
             });
-
-            const winConditions = [moves[0] + moves[1] + moves[2], moves[3] + moves[4] + moves[5], moves[6] + moves[7] + moves[8], moves[0] + moves[3] + moves[6], moves[1] + moves[1] + moves[4] + moves[7], moves[2] + moves[5] + moves[8], moves[0] + moves[4] + moves[8], moves[2] + moves[4] + moves[6]];
-            if (winConditons.indexOf("XXX") == -1) {
-                document.write("<div class='winCondition'>X wins! Play Again?</div>");
-            } else if (winConditons.indexOf("OOO") == -1) {
-                document.write("<div class='winCondition'>O wins! Play Again?</div>");
-            } 
-
-            let dashCount = 0;
-            for (let i = 0; i < 9; i++) {
-                if (moves[i] == "-") {
-                    dashCount = dashCount + 1;
-                }
-            }
-
-            if (dashCount == 0) {
-                 document.write("<div class='winCondition'>Stalemate! Play Again?</div>");
-            }
         </script>
     </div>
 
