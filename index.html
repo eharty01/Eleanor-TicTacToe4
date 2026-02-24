@@ -157,12 +157,12 @@
                     /* make sure square is empty first */
                     if (this.textContent == '') {
                         if (randomNum == 0) {
-                            moves[this.id[2] = "O"];
+                            moves[this.id[2]] = "O";
                             this.textContent = "O";
                             randomNum = 1;
                             document.querySelector('.playerTurn').textContent="Player X Turn";
                         } else {
-                            moves[this.id[2] = "X"];
+                            moves[this.id[2]] = "X";
                             this.textContent = "X";
                             randomNum = 0;
                             document.querySelector('.playerTurn').textContent="Player O Turn";
@@ -179,10 +179,6 @@
     <button type="button" onclick="window.location.reload();" class = "start-button">
         Start Game!
     </button>
-
-</body>
-
-</html>
 
 </body>
 
